@@ -3,7 +3,7 @@
 public class UserPreferences
 {
     public List<string> daysAvailable = new List<string>();
-     public List<string> validDayOptions { get; } = new List<string> {
+     public List<string> validDayOptions = new List<string> {
         "Mon", "Tue", "Weds", "Thur", "Fri", "Sat", "Sun"
         };
     public List<string> timesAvailable = new List<string>();
@@ -104,6 +104,13 @@ public class UserPreferences
         } while (true);
     }
 
+    public void displayUserPreferences()
+    {
+        Console.WriteLine("Days Available: " + string.Join(", ", daysAvailable));
+        Console.WriteLine("Times Available: " + string.Join(", ", timesAvailable));
+        Console.WriteLine("Workout Types: " + string.Join(", ", workoutTypes));
+        Console.WriteLine("Workout Goal: " + workoutGoal);
+    }
 
 }
 

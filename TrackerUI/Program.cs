@@ -28,9 +28,6 @@ public class Program
         Console.WriteLine("Options: " + string.Join(", ", userPreferences.validWorkoutGoals));
         userPreferences.getWorkoutGoal();
 
-        Console.WriteLine("Days Available: " + string.Join(", ", userPreferences.daysAvailable));
-        Console.WriteLine("Times Available: " + string.Join(", ", userPreferences.timesAvailable));
-        Console.WriteLine("Workout Types: " + string.Join(", ", userPreferences.workoutTypes));
-        Console.WriteLine("Workout Goal: " + userPreferences.workoutGoal);
+        userPreferences.displayUserPreferences();
     }
 }
