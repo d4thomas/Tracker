@@ -29,5 +29,9 @@ public class Program
         userPreferences.getWorkoutGoal();
 
         userPreferences.displayUserPreferences();
+
+        var workoutPlan = new WorkoutPlan();
+        workoutPlan.createWorkoutPlan(userPreferences);
+        workoutPlan.displayWorkoutPlan();
     }
 }

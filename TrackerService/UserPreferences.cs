@@ -106,7 +106,7 @@ public class UserPreferences
 
     public void displayUserPreferences()
     {
-        Console.WriteLine("Days Available: " + string.Join(", ", daysAvailable));
+        Console.WriteLine("\nDays Available: " + string.Join(", ", daysAvailable));
         Console.WriteLine("Times Available: " + string.Join(", ", timesAvailable));
         Console.WriteLine("Workout Types: " + string.Join(", ", workoutTypes));
         Console.WriteLine("Workout Goal: " + workoutGoal);
