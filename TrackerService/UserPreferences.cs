@@ -16,71 +16,74 @@ public class UserPreferences
         };
     public string? workoutGoal;
     public List<string> validWorkoutGoals = new List<string> {
-        "General", "Strenth", "Weightloss"
+        "General", "Strength", "Weightloss"
         };
 
     public void getDaysAvailable()
-        {
+    {
+        daysAvailable = new List<string>();
         string newDayAvailable;
         do
         {
             newDayAvailable = Console.ReadLine() ?? string.Empty;
             if (newDayAvailable == "done")
             {
-            break;
+                break;
             }
             if (validDayOptions.Contains(newDayAvailable))
             {
-            daysAvailable.Add(newDayAvailable);
+                daysAvailable.Add(newDayAvailable);
             }
             else
             {
-            Console.WriteLine("Invalid option. Please enter a valid option.");
-            Console.WriteLine("Options: " + string.Join(", ", validDayOptions));
+                Console.WriteLine("Invalid option. Please enter a valid option.");
+                Console.WriteLine("Options: " + string.Join(", ", validDayOptions));
             }
         } while (true);
     }
 
     public void getTimesAvailable()
-        {
+    {
+        timesAvailable = new List<string>();
         string newTimeAvailable;
         do
         {
             newTimeAvailable = Console.ReadLine() ?? string.Empty;
             if (newTimeAvailable == "done")
             {
-            break;
+                break;
             }
             if (validTimeOptions.Contains(newTimeAvailable))
             {
-            timesAvailable.Add(newTimeAvailable);
+                timesAvailable.Add(newTimeAvailable);
             }
             else
             {
-            Console.WriteLine("Invalid option. Please enter a valid option.");
-            Console.WriteLine("Options: " + string.Join(", ", validTimeOptions));
+                Console.WriteLine("Invalid option. Please enter a valid option.");
+                Console.WriteLine("Options: " + string.Join(", ", validTimeOptions));
             }
         } while (true);
     }
 
     public void getWorkoutTypes()
-        {
+    {
+        workoutTypes = new List<string>();
         string newWorkoutType;
         do
         {
             newWorkoutType = Console.ReadLine() ?? string.Empty;
             if (newWorkoutType == "done")
             {
-            break;
+                break;
             }
             if (validWorkoutTypes.Contains(newWorkoutType))
             {
-            workoutTypes.Add(newWorkoutType);
+                workoutTypes.Add(newWorkoutType);
             }
             else
             {
-            Console.WriteLine("Invalid option. Please enter a valid option.");
-            Console.WriteLine("Options: " + string.Join(", ", validWorkoutTypes));
+                Console.WriteLine("Invalid option. Please enter a valid option.");
+                Console.WriteLine("Options: " + string.Join(", ", validWorkoutTypes));
             }
         } while (true);
     }
@@ -98,15 +101,17 @@ public class UserPreferences
             }
             else
             {
-            Console.WriteLine("Invalid option. Please enter a valid option.");
-            Console.WriteLine("Options: " + string.Join(", ", validWorkoutGoals));
+                Console.WriteLine("Invalid option. Please enter a valid option.");
+                Console.WriteLine("Options: " + string.Join(", ", validWorkoutGoals));
             }
         } while (true);
     }
 
     public void displayUserPreferences()
     {
-        Console.WriteLine("\nDays Available: " + string.Join(", ", daysAvailable));
+        Console.Clear();
+        Console.WriteLine("##### Saved Preferences #####");
+        Console.WriteLine("Days Available: " + string.Join(", ", daysAvailable));
         Console.WriteLine("Times Available: " + string.Join(", ", timesAvailable));
         Console.WriteLine("Workout Types: " + string.Join(", ", workoutTypes));
         Console.WriteLine("Workout Goal: " + workoutGoal);

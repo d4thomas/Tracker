@@ -39,7 +39,7 @@ public class WorkoutSession
     {
         var workoutDetails = sessionWorkout != null
             ? $"Workout: {sessionWorkout.name}\nType: {sessionWorkout.type}\nHow To: {sessionWorkout.howTo}"
-            : "\nWorkout: None assigned";
+            : "\nWorkout: None Assigned!";
 
         return $"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Status: {sessionStatus ?? "Not Complete"}, Duration: {sessionDuration} mins \n{workoutDetails}";
     }
