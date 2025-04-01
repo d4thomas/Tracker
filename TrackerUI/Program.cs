@@ -8,6 +8,7 @@ public class Program
     {
         var userPreferences = new UserPreferences();
         var workoutPlan = new WorkoutPlan();
+        var workoutLog = new WorkoutLog();
 
         while (true)
         {
@@ -43,9 +44,14 @@ public class Program
                 Console.WriteLine("Options: " + string.Join(", ", userPreferences.validWorkoutGoals));
                 userPreferences.getWorkoutGoal();
 
+                // Display user preferences
                 userPreferences.displayUserPreferences();
 
+                // Create the workout plan
                 workoutPlan.createWorkoutPlan(userPreferences);
+
+                // Copy the workout plan to a workout log for tracking
+                workoutLog.copySessions(workoutPlan.workoutSessions);
             }
             else if (choice == "2")
             {
@@ -57,13 +63,21 @@ public class Program
             {
                 Console.Clear();
                 Console.WriteLine("\nTracking Workouts...");
-            }
-            else if (choice == "4")
-            {
-                Console.Clear();
-                Console.WriteLine("\nExiting...");
-                return;
-            }
+                workoutLog.displayAllSessions();
+
+                Console.WriteLine("\nDo you want to update a session? (y/n)");
+                 string? answer = Console.ReadLine();
+                if (answer?.ToLower() == "y")
+                {
+                    workoutLog.updateWorkoutSession();
+                }
+                }
+                else if (choice == "4")
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nExiting...");
+                    return;
+                }
             else
             {
                 Console.WriteLine("\nInvalid choice. Please try again.");

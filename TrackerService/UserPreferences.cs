@@ -110,7 +110,7 @@ public class UserPreferences
     public void displayUserPreferences()
     {
         Console.Clear();
-        Console.WriteLine("##### Saved Preferences #####");
+        Console.WriteLine("The following user preferences have been save:");
         Console.WriteLine("Days Available: " + string.Join(", ", daysAvailable));
         Console.WriteLine("Times Available: " + string.Join(", ", timesAvailable));
         Console.WriteLine("Workout Types: " + string.Join(", ", workoutTypes));

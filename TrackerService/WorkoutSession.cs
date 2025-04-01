@@ -41,6 +41,6 @@ public class WorkoutSession
             ? $"Workout: {sessionWorkout.name}\nType: {sessionWorkout.type}\nHow To: {sessionWorkout.howTo}"
             : "\nWorkout: None Assigned!";
 
-        return $"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Status: {sessionStatus ?? "Not Complete"}, Duration: {sessionDuration} mins \n{workoutDetails}";
+        return $"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Status: {sessionStatus ?? "Not Complete"}, Recommended Duration: {sessionDuration} mins \n{workoutDetails}";
     }
 }
