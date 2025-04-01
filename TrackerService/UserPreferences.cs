@@ -26,6 +26,11 @@ public class UserPreferences
         do
         {
             newDayAvailable = Console.ReadLine() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(newDayAvailable))
+            {
+                daysAvailable = new List<string>(validDayOptions);
+                break;
+            }
             if (newDayAvailable == "done")
             {
                 break;
@@ -49,6 +54,11 @@ public class UserPreferences
         do
         {
             newTimeAvailable = Console.ReadLine() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(newTimeAvailable))
+            {
+                timesAvailable = new List<string>(validTimeOptions);
+                break;
+            }
             if (newTimeAvailable == "done")
             {
                 break;
@@ -72,6 +82,11 @@ public class UserPreferences
         do
         {
             newWorkoutType = Console.ReadLine() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(newWorkoutType))
+            {
+                workoutTypes = new List<string>(validWorkoutTypes);
+                break;
+            }
             if (newWorkoutType == "done")
             {
                 break;
@@ -94,6 +109,11 @@ public class UserPreferences
         do
         {
             newWorkoutGoal = Console.ReadLine() ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(newWorkoutGoal))
+            {
+                workoutGoal = "General";
+                break;
+            }
             if(validWorkoutGoals.Contains(newWorkoutGoal))
             {
                 workoutGoal = newWorkoutGoal;

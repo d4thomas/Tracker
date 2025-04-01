@@ -2,12 +2,12 @@
 
 public class WorkoutSession
 {
-    public int sessionID;
-    public string? sessionDay;
-    public string? sessionTime;
-    public string? sessionStatus;
-    public int sessionDuration;
-    public Workout? sessionWorkout; 
+    public int sessionID { get; set; }
+    public string? sessionDay { get; set; }
+    public string? sessionTime { get; set; }
+    public string? sessionStatus { get; set; }
+    public int sessionDuration { get; set; }
+    public Workout? sessionWorkout { get; set; }
 
     public WorkoutSession(int sessionID, string sessionDay, string sessionTime, List<string> workoutTypes, string? workoutGoal)
     {
@@ -41,6 +41,7 @@ public class WorkoutSession
             ? $"Workout: {sessionWorkout.name}\nType: {sessionWorkout.type}\nHow To: {sessionWorkout.howTo}"
             : "\nWorkout: None Assigned!";
 
-        return $"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Status: {sessionStatus ?? "Not Complete"}, Recommended Duration: {sessionDuration} mins \n{workoutDetails}";
+        return $"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Duration: {sessionDuration} mins \n{workoutDetails}";
     }
+
 }

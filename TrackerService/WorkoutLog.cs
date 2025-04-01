@@ -34,24 +34,33 @@ public void updateWorkoutSession()
                 }
             }
             Console.WriteLine("\nUpdated Session:");
-            Console.WriteLine(session.displaySession());
+            displayAllSessions();
         }
         else
         {
             Console.WriteLine($"Session with ID {sessionID} not found.");
         }
     }
-    else
-    {
-        Console.WriteLine("Invalid Session ID entered.");
-    }
 }
 
     public void displayAllSessions()
     {
+        int total = workoutSessions.Count;
+        int completed = 0;
+
         foreach (var session in workoutSessions.Values)
         {
-            Console.WriteLine(session.displaySession());
+            Console.WriteLine($"Session ID: {session.sessionID}, Day: {session.sessionDay}, Time: {session.sessionTime}, Status: {session.sessionStatus}, Recommended Duration: {session.sessionDuration} mins");
+
+            Console.WriteLine($"Workout: {session.sessionWorkout?.name ?? "Unknown"}");
+            Console.WriteLine($"Type: {session.sessionWorkout?.type ?? "Unknwon"}\n");
+
+            if (!string.IsNullOrWhiteSpace(session.sessionStatus) && session.sessionStatus.Contains("Complete |"))
+            {
+                completed++;
+            }
+
+            Console.WriteLine($"Progress: {completed} out of {total} sessions completed.");
         }
     }
 
@@ -70,7 +79,7 @@ public void updateWorkoutSession()
             {
                 sessionWorkout = original.sessionWorkout,
                 sessionDuration = original.sessionDuration,
-                sessionStatus = "Pending"
+                sessionStatus = "Not Complete"
             };
 
             workoutSessions[kvp.Key] = logSession;

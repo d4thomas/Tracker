@@ -24,6 +24,7 @@ public class Program
             if (choice == "1")
             {
                 Console.Clear();
+                Console.WriteLine("Creating workout plan...");
                 // Get days available from the user
                 Console.WriteLine("\nPlease enter the day(s) you are available. Type done when complete.");
                 Console.WriteLine("Options: " + string.Join(", ", userPreferences.validDayOptions));
@@ -49,6 +50,7 @@ public class Program
 
                 // Create the workout plan
                 workoutPlan.createWorkoutPlan(userPreferences);
+                workoutPlan.exportWorkoutPlanToJson();
 
                 // Copy the workout plan to a workout log for tracking
                 workoutLog.copySessions(workoutPlan.workoutSessions);
@@ -56,13 +58,13 @@ public class Program
             else if (choice == "2")
             {
                 Console.Clear();
-                Console.WriteLine("\nViewing Workout Schedule...");
+                Console.WriteLine("\nViewing workout schedule...");
                 workoutPlan.displayWorkoutPlan();
             }
             else if (choice == "3")
             {
                 Console.Clear();
-                Console.WriteLine("\nTracking Workouts...");
+                Console.WriteLine("\nTracking workouts...");
                 workoutLog.displayAllSessions();
 
                 Console.WriteLine("\nDo you want to update a session? (y/n)");

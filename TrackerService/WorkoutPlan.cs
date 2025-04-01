@@ -1,8 +1,12 @@
-﻿namespace TrackerService;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace TrackerService;
 
 public class WorkoutPlan
 {
     public Dictionary<int, WorkoutSession> workoutSessions = new();
+    public string filePath = "workoutPlan.json";
 
     public void createWorkoutPlan(UserPreferences userPreferences)
     {
@@ -20,6 +24,18 @@ public class WorkoutPlan
         {
             Console.WriteLine(session.displaySession());
         }
+    }
+
+    public void exportWorkoutPlanToJson()
+    {
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+
+        File.WriteAllText(filePath, JsonSerializer.Serialize(workoutSessions, options));
+        Console.WriteLine($"Workout plan exported to {filePath}");
     }
 }
 
