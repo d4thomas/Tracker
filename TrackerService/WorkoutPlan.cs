@@ -36,7 +36,6 @@ public class WorkoutPlan
         };
 
         File.WriteAllText(filePath, JsonSerializer.Serialize(workoutSessions, options));
-        Console.WriteLine("\nWorkout plan saved to disk.");
     }
 
     public static WorkoutPlan loadWorkoutPlan(string filePath = "workoutPlan.json")

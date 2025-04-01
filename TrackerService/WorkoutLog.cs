@@ -25,8 +25,12 @@ public void updateWorkoutSession()
         {
             var session = workoutSessions[sessionID];
 
-            Console.WriteLine("Was this session completed or missed? (Complete/Missed):");
+            Console.WriteLine("Was this session completed or missed? (Complete/Missed, return will register Complete):");
             string? status = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(status))
+            {
+                status = "Complete";
+            }
             session.sessionStatus = status;
 
             if(status == "Complete")
@@ -100,7 +104,6 @@ public void updateWorkoutSession()
         };
 
         File.WriteAllText(filePath, JsonSerializer.Serialize(workoutSessions, options));
-        Console.WriteLine("Workout log exported to file.");
     }
 
     public static WorkoutLog loadWorkoutLog(string filePath = "workoutLog.json")
