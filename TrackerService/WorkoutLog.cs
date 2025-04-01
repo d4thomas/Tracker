@@ -1,8 +1,13 @@
-﻿namespace TrackerService;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace TrackerService;
 
 public class WorkoutLog
 {
     private Dictionary<int, WorkoutSession> workoutSessions = new();
+    public string filePath = "workoutLog.json";
+    public bool isImported { get; private set; } = false;
 
     public void AddSession(WorkoutSession session)
     {
@@ -33,6 +38,7 @@ public void updateWorkoutSession()
                     session.sessionStatus += $" | Workout Duration: {workoutDuration}";
                 }
             }
+            exportWorkoutLog();
             Console.WriteLine("\nUpdated Session:");
             displayAllSessions();
         }
@@ -59,9 +65,8 @@ public void updateWorkoutSession()
             {
                 completed++;
             }
-
-            Console.WriteLine($"Progress: {completed} out of {total} sessions completed.");
         }
+        Console.WriteLine($"Progress: {completed} out of {total} sessions completed.");
     }
 
     public void copySessions(Dictionary<int, WorkoutSession> sessionsToCopy)
@@ -84,5 +89,50 @@ public void updateWorkoutSession()
 
             workoutSessions[kvp.Key] = logSession;
         }
+    }
+
+    public void exportWorkoutLog()
+    {
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+
+        File.WriteAllText(filePath, JsonSerializer.Serialize(workoutSessions, options));
+        Console.WriteLine("Workout log exported to file.");
+    }
+
+    public static WorkoutLog loadWorkoutLog(string filePath = "workoutLog.json")
+    {
+        var workoutLog = new WorkoutLog();
+
+        if (File.Exists(filePath))
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                var sessions = JsonSerializer.Deserialize<Dictionary<int, WorkoutSession>>(json, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (sessions != null)
+                {
+                    foreach (var kvp in sessions)
+                    {
+                        workoutLog.AddSession(kvp.Value);
+                    }
+                    workoutLog.isImported = true;
+                    Console.WriteLine("Workout log loaded from file.");
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Error reading workout log: {exception.Message}");
+            }
+        }
+
+        return workoutLog;
     }
 }

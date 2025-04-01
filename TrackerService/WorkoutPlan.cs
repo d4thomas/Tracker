@@ -7,6 +7,7 @@ public class WorkoutPlan
 {
     public Dictionary<int, WorkoutSession> workoutSessions = new();
     public string filePath = "workoutPlan.json";
+    public bool isImported { get; private set; } = false;
 
     public void createWorkoutPlan(UserPreferences userPreferences)
     {
@@ -26,7 +27,7 @@ public class WorkoutPlan
         }
     }
 
-    public void exportWorkoutPlanToJson()
+    public void exportWorkoutPlan()
     {
         var options = new JsonSerializerOptions
         {
@@ -38,7 +39,7 @@ public class WorkoutPlan
         Console.WriteLine("\nWorkout plan saved to disk.");
     }
 
-    public static WorkoutPlan LoadWorkoutPlan(string filePath = "workoutPlan.json")
+    public static WorkoutPlan loadWorkoutPlan(string filePath = "workoutPlan.json")
     {
         if (File.Exists(filePath))
         {
@@ -57,7 +58,9 @@ public class WorkoutPlan
                 }
 
                 Console.WriteLine("Workout plan loaded from file.");
-                return new WorkoutPlan { workoutSessions = sessions };
+                return new WorkoutPlan { 
+                    workoutSessions = sessions,
+                    isImported = true };
             }
             catch (Exception exception)
             {

@@ -7,8 +7,13 @@ public class Program
     static void Main(string[] args)
     {
         var userPreferences = new UserPreferences();
-        var workoutPlan = WorkoutPlan.LoadWorkoutPlan();
-        var workoutLog = new WorkoutLog();
+        var workoutPlan = WorkoutPlan.loadWorkoutPlan();
+        var workoutLog = WorkoutLog.loadWorkoutLog();
+        if(workoutPlan.isImported & workoutLog.isImported) {}
+        else
+        {
+             workoutLog.copySessions(workoutPlan.workoutSessions);
+        }
 
         while (true)
         {
@@ -50,10 +55,11 @@ public class Program
 
                 // Create the workout plan
                 workoutPlan.createWorkoutPlan(userPreferences);
-                workoutPlan.exportWorkoutPlanToJson();
+                workoutPlan.exportWorkoutPlan();
 
                 // Copy the workout plan to a workout log for tracking
                 workoutLog.copySessions(workoutPlan.workoutSessions);
+                workoutLog.exportWorkoutLog();
             }
             else if (choice == "2")
             {
