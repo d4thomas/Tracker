@@ -2,9 +2,11 @@
 
 public class Workout
 {
-    public string? name;
-    public string? type;
-    public string? howTo;
+    public string? name { get; set; }
+    public string? type { get; set; }
+    public string? howTo { get; set; }
+
+    public Workout() { }
 
     public Workout(string name, string type, string howTo)
     {

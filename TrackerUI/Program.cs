@@ -7,7 +7,7 @@ public class Program
     static void Main(string[] args)
     {
         var userPreferences = new UserPreferences();
-        var workoutPlan = new WorkoutPlan();
+        var workoutPlan = WorkoutPlan.LoadWorkoutPlan();
         var workoutLog = new WorkoutLog();
 
         while (true)

@@ -35,7 +35,40 @@ public class WorkoutPlan
         };
 
         File.WriteAllText(filePath, JsonSerializer.Serialize(workoutSessions, options));
-        Console.WriteLine($"Workout plan exported to {filePath}");
+        Console.WriteLine("\nWorkout plan saved to disk.");
+    }
+
+    public static WorkoutPlan LoadWorkoutPlan(string filePath = "workoutPlan.json")
+    {
+        if (File.Exists(filePath))
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                var sessions = JsonSerializer.Deserialize<Dictionary<int, WorkoutSession>>(json, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (sessions == null)
+                {
+                    Console.WriteLine("Failed to load workout plan. Returning empty workout plan.");
+                    return new WorkoutPlan();
+                }
+
+                Console.WriteLine("Workout plan loaded from file.");
+                return new WorkoutPlan { workoutSessions = sessions };
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Error reading workout plan: {exception.Message}");
+                return new WorkoutPlan();
+            }
+        }
+        else
+        {
+            return new WorkoutPlan();
+        }
     }
 }
 

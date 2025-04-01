@@ -8,6 +8,7 @@ public class WorkoutSession
     public string? sessionStatus { get; set; }
     public int sessionDuration { get; set; }
     public Workout? sessionWorkout { get; set; }
+    public WorkoutSession() { }
 
     public WorkoutSession(int sessionID, string sessionDay, string sessionTime, List<string> workoutTypes, string? workoutGoal)
     {
