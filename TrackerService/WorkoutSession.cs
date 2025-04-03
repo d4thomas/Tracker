@@ -2,6 +2,7 @@
 
 public class WorkoutSession
 {
+    // Initialize workout session properties
     public int sessionID { get; set; }
     public string? sessionDay { get; set; }
     public string? sessionTime { get; set; }
@@ -12,14 +13,17 @@ public class WorkoutSession
 
     public WorkoutSession(int sessionID, string sessionDay, string sessionTime, List<string> workoutTypes, string? workoutGoal)
     {
+        // Initialize workout session with provided parameters
         this.sessionID = sessionID;
         this.sessionDay = sessionDay;
         this.sessionTime = sessionTime;
         sessionDuration = 15;
 
+        // Filter workouts based on the provided workout types
         var filteredWorkouts = Workout.Workouts.Values.Where(workout => workout.type != null && workoutTypes.Contains(workout.type)).ToList();
-        var random = new Random();
 
+        // Match the workout types to include only items from the correct goal
+        var random = new Random();
         if (workoutGoal == "General")
         {
             sessionWorkout = filteredWorkouts[random.Next(filteredWorkouts.Count)];
@@ -38,10 +42,12 @@ public class WorkoutSession
 
     public string displaySession()
     {
+        // Set workout details... ensure no null value
         var workoutDetails = sessionWorkout != null
             ? $"Workout: {sessionWorkout.name}\nType: {sessionWorkout.type}\nHow To: {sessionWorkout.howTo}"
             : "\nWorkout: None Assigned!";
 
+        // Return session details
         return $"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Duration: {sessionDuration} mins \n{workoutDetails}";
     }
 

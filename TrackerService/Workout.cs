@@ -2,14 +2,17 @@
 
 public class Workout
 {
+    // Initialize workout properties
     public string? name { get; set; }
     public string? type { get; set; }
     public string? howTo { get; set; }
 
+    // Required for JSON deserialization
     public Workout() { }
 
     public Workout(string name, string type, string howTo)
     {
+        // Create workout
         this.name = name;
         this.type = type;
         this.howTo = howTo;
@@ -17,6 +20,8 @@ public class Workout
 
     public static Dictionary<string, Workout> Workouts = new Dictionary<string, Workout>
     {
+        // Create defined workouts
+
         // Strength workouts
         { "Push-Ups", new Workout("Push-Ups", "Strength", "Start in a plank position, lower your body until your chest nearly touches the floor, then push back up.") },
         { "Squats", new Workout("Squats", "Strength", "Stand with feet shoulder-width apart, lower your hips until thighs are parallel to the ground, then return to standing.") },

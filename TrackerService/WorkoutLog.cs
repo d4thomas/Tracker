@@ -5,20 +5,24 @@ namespace TrackerService;
 
 public class WorkoutLog
 {
+    // Initilize a dictionary variables
     private Dictionary<int, WorkoutSession> workoutSessions = new();
     public string filePath = "workoutLog.json";
     public bool isImported { get; private set; } = false;
 
     public void AddSession(WorkoutSession session)
     {
+        // Add session to workkout session dictionary
         workoutSessions[session.sessionID] = session;
     }
 
 public void updateWorkoutSession()
 {
+    // Get session ID
     Console.WriteLine("Enter the Session ID:");
     string? sessionIDString = Console.ReadLine();
 
+    // Update session ID status, if complete ask user for metric (duration) 
     if (int.TryParse(sessionIDString, out int sessionID))
     {
         if (workoutSessions.ContainsKey(sessionID))
@@ -42,6 +46,8 @@ public void updateWorkoutSession()
                     session.sessionStatus += $" | Workout Duration: {workoutDuration}";
                 }
             }
+
+            // Export the workout log and display sessions
             exportWorkoutLog();
             Console.WriteLine("\nUpdated Session:");
             displayAllSessions();
@@ -55,9 +61,11 @@ public void updateWorkoutSession()
 
     public void displayAllSessions()
     {
+        // Initialize variables to determine progress
         int total = workoutSessions.Count;
         int completed = 0;
 
+        // Display all sessions in the workout log
         foreach (var session in workoutSessions.Values)
         {
             Console.WriteLine($"Session ID: {session.sessionID}, Day: {session.sessionDay}, Time: {session.sessionTime}, Status: {session.sessionStatus}, Recommended Duration: {session.sessionDuration} mins");
@@ -70,11 +78,14 @@ public void updateWorkoutSession()
                 completed++;
             }
         }
+
+        // Display progress
         Console.WriteLine($"Progress: {completed} out of {total} sessions completed.");
     }
 
     public void copySessions(Dictionary<int, WorkoutSession> sessionsToCopy)
     {
+        // Copy each key-value pair for each session to create the workout log
         foreach (var kvp in sessionsToCopy)
         {
             var original = kvp.Value;
@@ -97,6 +108,7 @@ public void updateWorkoutSession()
 
     public void exportWorkoutLog()
     {
+        // Export workout log to JSON file
         var options = new JsonSerializerOptions
         {
             WriteIndented = true,
@@ -108,6 +120,7 @@ public void updateWorkoutSession()
 
     public static WorkoutLog loadWorkoutLog(string filePath = "workoutLog.json")
     {
+        // Load workout log from JSON file
         var workoutLog = new WorkoutLog();
 
         if (File.Exists(filePath))

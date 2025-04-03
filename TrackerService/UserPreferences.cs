@@ -2,6 +2,7 @@
 
 public class UserPreferences
 {
+    // Initialize user preferences
     public List<string> daysAvailable = new List<string>();
      public List<string> validDayOptions = new List<string> {
         "Mon", "Tue", "Weds", "Thur", "Fri", "Sat", "Sun"
@@ -21,7 +22,10 @@ public class UserPreferences
 
     public void getDaysAvailable()
     {
+        // Erase imput so a user can reinitilize preferences
         daysAvailable = new List<string>();
+
+        // Get days from user
         string newDayAvailable;
         do
         {
@@ -49,7 +53,10 @@ public class UserPreferences
 
     public void getTimesAvailable()
     {
+        // Erase imput so a user can reinitilize preferences
         timesAvailable = new List<string>();
+
+        // Get times from user
         string newTimeAvailable;
         do
         {
@@ -77,7 +84,10 @@ public class UserPreferences
 
     public void getWorkoutTypes()
     {
+        // Erase imput so a user can reinitilize preferences
         workoutTypes = new List<string>();
+
+        // Get workout types from user
         string newWorkoutType;
         do
         {
@@ -105,7 +115,10 @@ public class UserPreferences
 
     public void getWorkoutGoal()
     {
+        // Erase imput so a user can reinitilize preferences
         string newWorkoutGoal;
+
+        // Get workout goal from user
         do
         {
             newWorkoutGoal = Console.ReadLine() ?? string.Empty;
@@ -129,6 +142,7 @@ public class UserPreferences
 
     public void displayUserPreferences()
     {
+        // Display user preferences
         Console.Clear();
         Console.WriteLine("The following user preferences have been save:");
         Console.WriteLine("Days Available: " + string.Join(", ", daysAvailable));

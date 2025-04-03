@@ -6,18 +6,23 @@ public class Program
 {
     static void Main(string[] args)
     {
+        // Initialize user preferences, workout plan, and workout log
         var userPreferences = new UserPreferences();
         var workoutPlan = WorkoutPlan.loadWorkoutPlan();
         var workoutLog = WorkoutLog.loadWorkoutLog();
+
+        // Check if workout plan and log are imported
         if(workoutPlan.isImported & workoutLog.isImported) {}
         else
         {
+            // Create new workout log if a workout plan is found, but no log exists
              workoutLog.copySessions(workoutPlan.workoutSessions);
              workoutLog.exportWorkoutLog();
         }
 
         while (true)
         {
+            // Display the menu options
             Console.WriteLine("\nMenu:");
             Console.WriteLine("1. Create Workout Plan");
             Console.WriteLine("2. View Workout Schedule");
@@ -27,12 +32,15 @@ public class Program
             Console.WriteLine("6. Exit");
             Console.Write("Enter menu option: ");
 
+            // Get user input for menu option
             var choice = Console.ReadLine();
 
+            // Get user preferences and create workout plan
             if (choice == "1")
             {
                 Console.Clear();
                 Console.WriteLine("Creating workout plan...");
+
                 // Get days available from the user
                 Console.WriteLine("\nPlease enter the day(s) you are available. Type done when complete.");
                 Console.WriteLine("Options: " + string.Join(", ", userPreferences.validDayOptions));
@@ -64,21 +72,24 @@ public class Program
                 Console.Clear();
                 userPreferences.displayUserPreferences();
 
-                // Create the workout plan
+                // Create workout plan
                 workoutPlan.createWorkoutPlan(userPreferences);
                 workoutPlan.exportWorkoutPlan();
 
-                // Copy the workout plan to a workout log for tracking
+                // Copy workout plan to a workout log for tracking
                 workoutLog.copySessions(workoutPlan.workoutSessions);
                 workoutLog.exportWorkoutLog();
             }
+
+            // View workout schedule
             else if (choice == "2")
             {
-                // Display the workout schedule
                 Console.Clear();
                 Console.WriteLine("\nViewing workout schedule...");
                 workoutPlan.displayWorkoutPlan();
             }
+
+            // Track workouts
             else if (choice == "3")
             {
                 // Display the workout log
@@ -89,6 +100,7 @@ public class Program
                 // Check to see if an update is wanted
                 Console.WriteLine("\nDo you want to update a session? (y/n)");
                 string? answer;
+                // Loop until user does not want to update sessions
                 do
                 {
                     answer = Console.ReadLine();
@@ -99,6 +111,8 @@ public class Program
                     }
                 } while (answer?.ToLower() == "y");
             }
+
+            // Delete workout plan
             else if (choice == "4")
             {
                 Console.Clear();
@@ -113,6 +127,8 @@ public class Program
                     Console.WriteLine("No workout plan found to delete.");
                 }
             }
+
+            // Delete workout log
             else if (choice == "5")
             {
                 Console.Clear();
@@ -127,12 +143,16 @@ public class Program
                     Console.WriteLine("No workout log found to delete.");
                 }
             }
+
+            // Exit the program
             else if (choice == "6")
             {
                 Console.Clear();
                 Console.WriteLine("\nExiting...");
                 return;
             }
+
+            // Invalid choice notification
             else
             {
                 Console.WriteLine("\nInvalid choice. Please try again.");

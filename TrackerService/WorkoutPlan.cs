@@ -5,22 +5,28 @@ namespace TrackerService;
 
 public class WorkoutPlan
 {
+    // Initialize workout plan
     public Dictionary<int, WorkoutSession> workoutSessions = new();
     public string filePath = "workoutPlan.json";
     public bool isImported { get; private set; } = false;
 
     public void createWorkoutPlan(UserPreferences userPreferences)
     {
+        // Create a workout session for each day available
         for (int i = 0; i < userPreferences.daysAvailable.Count; i++)
         {
+            // Create an index to cycle through the times available
             var index = i % userPreferences.timesAvailable.Count;
+            // Create a workout session
             var session = new WorkoutSession(i, userPreferences.daysAvailable[i], userPreferences.timesAvailable[index], userPreferences.workoutTypes, userPreferences.workoutGoal);
+            // Add the session to the workout plan
             workoutSessions[i] = session;
         }
     }
 
     public void displayWorkoutPlan()
     {
+        // Display each session in the workout plan
         foreach (var session in workoutSessions.Values)
         {
             Console.WriteLine(session.displaySession());
@@ -29,6 +35,7 @@ public class WorkoutPlan
 
     public void exportWorkoutPlan()
     {
+        // Export the workout plan to a JSON file
         var options = new JsonSerializerOptions
         {
             WriteIndented = true,
@@ -40,6 +47,7 @@ public class WorkoutPlan
 
     public static WorkoutPlan loadWorkoutPlan(string filePath = "workoutPlan.json")
     {
+        // Load the workout plan from a JSON file
         if (File.Exists(filePath))
         {
             try
@@ -52,7 +60,7 @@ public class WorkoutPlan
 
                 if (sessions == null)
                 {
-                    Console.WriteLine("Failed to load workout plan. Returning empty workout plan.");
+                    Console.WriteLine("Failed to load workout plan. Creating empty workout plan.");
                     return new WorkoutPlan();
                 }
 
