@@ -11,7 +11,7 @@ public class Program
         var workoutPlan = WorkoutPlan.loadWorkoutPlan();
         var workoutLog = WorkoutLog.loadWorkoutLog();
 
-        // Create a workout log if workout plan was imported but no workout log
+        // Create workout log if workout plan was imported but no workout log
         if (!workoutPlan.isImported || !workoutLog.isImported)
         {
             workoutLog.copySessions(workoutPlan.workoutSessions);
