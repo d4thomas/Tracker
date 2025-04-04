@@ -1,6 +1,6 @@
 ﻿using TrackerService;
 
-namespace TrackerIU;
+namespace TrackerUI;
 
 public class Program
 {
@@ -11,14 +11,14 @@ public class Program
         var workoutPlan = WorkoutPlan.loadWorkoutPlan();
         var workoutLog = WorkoutLog.loadWorkoutLog();
 
-        // Check if workout plan and log are imported
-        if(workoutPlan.isImported & workoutLog.isImported) {}
-        else
+        // Create a workout log if workout plan was imported, but no workout log
+        if (!workoutPlan.isImported || !workoutLog.isImported)
         {
-            // Create new workout log if a workout plan is found, but no log exists
-             workoutLog.copySessions(workoutPlan.workoutSessions);
-             workoutLog.exportWorkoutLog();
+            workoutLog.copySessions(workoutPlan.workoutSessions);
+            workoutLog.exportWorkoutLog();
         }
+
+        Console.Clear();
 
         while (true)
         {

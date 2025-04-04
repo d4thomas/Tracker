@@ -29,7 +29,7 @@ public class WorkoutPlan
         // Display each session in the workout plan
         foreach (var session in workoutSessions.Values)
         {
-            Console.WriteLine(session.displaySession());
+            session.displaySession();
         }
     }
 

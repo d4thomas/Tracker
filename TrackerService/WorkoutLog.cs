@@ -12,7 +12,7 @@ public class WorkoutLog
 
     public void AddSession(WorkoutSession session)
     {
-        // Add session to workkout session dictionary
+        // Add session to workout session dictionary
         workoutSessions[session.sessionID] = session;
     }
 

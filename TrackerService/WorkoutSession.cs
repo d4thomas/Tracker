@@ -40,15 +40,15 @@ public class WorkoutSession
         }
     }
 
-    public string displaySession()
+    public void displaySession()
     {
         // Set workout details... ensure no null value
         var workoutDetails = sessionWorkout != null
             ? $"Workout: {sessionWorkout.name}\nType: {sessionWorkout.type}\nHow To: {sessionWorkout.howTo}"
             : "\nWorkout: None Assigned!";
 
-        // Return session details
-        return $"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Duration: {sessionDuration} mins \n{workoutDetails}";
+        // Display workout session
+        Console.WriteLine($"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Duration: {sessionDuration} mins \n{workoutDetails}");
     }
 
 }
