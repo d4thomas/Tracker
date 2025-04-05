@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerUI", "TrackerUI\Trac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerService", "TrackerService\TrackerService.csproj", "{38FD3C75-5BAC-44D9-997D-C7BA4D98CB57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker.Tests", "Tracker.Tests\Tracker.Tests.csproj", "{D123B628-58D9-4285-ABA1-75D2A591C9C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackerTests", "TrackerTests\TrackerTests.csproj", "{D123B628-58D9-4285-ABA1-75D2A591C9C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
