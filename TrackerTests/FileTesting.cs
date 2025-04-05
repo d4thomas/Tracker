@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using TrackerService;
 
-namespace Tracker.Tests
+namespace TrackerTests
 {
     public class WorkoutPlanTest
     {
