@@ -1,5 +1,5 @@
 # CS690 Final Project
-Application to create work out plans and track adherence.
+Application to create workout plans and track adherence.
 ## Project Links
 [Main Project Wiki](https://github.com/d4thomas/CS690-FinalProject/wiki)
 
