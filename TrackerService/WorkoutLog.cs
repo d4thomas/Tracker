@@ -10,7 +10,7 @@ public class WorkoutLog
     public string filePath = "workoutLog.json";
     public bool isImported { get; private set; } = false;
 
-    public void AddSession(WorkoutSession session)
+    public void addSession(WorkoutSession session)
     {
         // Add session to workout session dictionary
         workoutSessions[session.sessionID] = session;
@@ -137,7 +137,7 @@ public void updateWorkoutSession()
                 {
                     foreach (var kvp in sessions)
                     {
-                        workoutLog.AddSession(kvp.Value);
+                        workoutLog.addSession(kvp.Value);
                     }
                     workoutLog.isImported = true;
                     Console.WriteLine("Workout log loaded from file.");
