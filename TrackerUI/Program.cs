@@ -95,21 +95,28 @@ public class Program
                 // Display the workout log
                 Console.Clear();
                 Console.WriteLine("\nTracking workouts...");
-                workoutLog.displayAllSessions();
-
-                // Check to see if an update is wanted
-                Console.WriteLine("\nDo you want to update a session? (y/n)");
-                string? answer;
-                // Loop until user does not want to update sessions
-                do
+                if(workoutLog.workoutSessions.Count > 0)
                 {
-                    answer = Console.ReadLine();
-                    if (answer?.ToLower() == "y")
+                    workoutLog.displayAllSessions();
+
+                    // Check to see if an update is wanted
+                    Console.WriteLine("\nDo you want to update a session? (y/n)");
+                    string? answer;
+                    // Loop until user does not want to update sessions
+                    do
                     {
-                        workoutLog.updateWorkoutSession();
-                        Console.WriteLine("\nDo you want to update another session? (y/n)");
+                        answer = Console.ReadLine();
+                        if (answer?.ToLower() == "y")
+                        {
+                            workoutLog.updateWorkoutSession();
+                            Console.WriteLine("\nDo you want to update another session? (y/n)");
+                        }
+                    } while (answer?.ToLower() == "y");
                     }
-                } while (answer?.ToLower() == "y");
+                else
+                {
+                    Console.WriteLine("No workout log found!");
+                }
             }
 
             // Delete workout plan
@@ -119,6 +126,8 @@ public class Program
                 Console.WriteLine("\nDeleting workout plan...");
                 if (File.Exists("workoutPlan.json"))
                 {
+                    // Make sure to clear the current workout plan, then delete file
+                    workoutPlan = new WorkoutPlan();
                     File.Delete("workoutPlan.json");
                     Console.WriteLine("Workout plan deleted successfully.");
                 }
@@ -135,6 +144,8 @@ public class Program
                 Console.WriteLine("\nDeleting workout log...");
                 if (File.Exists("workoutLog.json"))
                 {
+                    // Make sure to clear the current workout log, then delete file
+                    workoutLog = new WorkoutLog();
                     File.Delete("workoutLog.json");
                     Console.WriteLine("Workout log deleted successfully.");
                 }
