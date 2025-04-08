@@ -6,7 +6,7 @@ namespace TrackerService;
 public class WorkoutLog
 {
     // Initilize a dictionary variables
-    private Dictionary<int, WorkoutSession> workoutSessions = new();
+    public Dictionary<int, WorkoutSession> workoutSessions = new();
     public string filePath = "workoutLog.json";
     public bool isImported { get; private set; } = false;
 
@@ -49,7 +49,6 @@ public void updateWorkoutSession()
 
             // Export the workout log and display sessions
             exportWorkoutLog();
-            Console.WriteLine("\nUpdated Session:");
             displayAllSessions();
         }
         else
@@ -65,22 +64,65 @@ public void updateWorkoutSession()
         int total = workoutSessions.Count;
         int completed = 0;
 
-        // Display all sessions in the workout log
+        // Deternine completed sessions
         foreach (var session in workoutSessions.Values)
         {
-            Console.WriteLine($"Session ID: {session.sessionID}, Day: {session.sessionDay}, Time: {session.sessionTime}, Status: {session.sessionStatus}, Recommended Duration: {session.sessionDuration} mins");
-
-            Console.WriteLine($"Workout: {session.sessionWorkout?.name ?? "Unknown"}");
-            Console.WriteLine($"Type: {session.sessionWorkout?.type ?? "Unknwon"}\n");
-
             if (!string.IsNullOrWhiteSpace(session.sessionStatus) && session.sessionStatus.Contains("Complete |"))
             {
                 completed++;
             }
         }
 
-        // Display progress
-        Console.WriteLine($"Progress: {completed} out of {total} sessions completed.");
+        // Display progress graph
+        double percentage = (completed / (double)total) * 100;
+        int graphWidth = 30;
+        int completedBars = (int)((percentage / 100) * graphWidth);
+        string progressGraph = new string('#', completedBars).PadRight(graphWidth, '-');
+        Console.Clear();
+        Console.WriteLine($"Progress: [{progressGraph}]");
+
+        // Display progress summary
+        Console.WriteLine($"{completed} out of {total} sessions completed.");
+        Console.WriteLine($"Completion Percentage: {percentage:F0}%");
+
+        // Display motivational message
+        if (percentage == 0)
+        {
+            Console.WriteLine("Don't worry, you can start fresh today!");
+        }
+        else if (percentage > 0 && percentage < 25)
+        {
+            Console.WriteLine("Keep at it!");
+        }
+        else if (percentage >= 25 && percentage < 50)
+        {
+            Console.WriteLine("You're almost halfway there!");
+        }
+        else if (percentage >= 50 && percentage < 75)
+        {
+            Console.WriteLine("You're more than halfway there!");
+        }
+        else if (percentage >= 75 && percentage < 100)
+        {
+            Console.WriteLine("You're almost done!");
+        }
+        else if (percentage == 100)
+        {
+            Console.WriteLine("Congratulations! You've completed all your sessions!");
+        }
+
+        // Wait for user to proceed
+        Console.WriteLine("\nPress return to view all sessions...");
+        Console.ReadLine();
+
+        // Display all sessions in the workout log
+        foreach (var session in workoutSessions.Values)
+        {
+            Console.WriteLine($"Session ID: {session.sessionID}, Day: {session.sessionDay}, Time: {session.sessionTime}, Status: {session.sessionStatus}, Recommended Duration: {session.sessionDuration} mins");
+
+            Console.WriteLine($"Workout: {session.sessionWorkout?.name ?? "Unknown"}");
+            Console.WriteLine($"Type: {session.sessionWorkout?.type ?? "Unknown"}\n");
+        }
     }
 
     public void copySessions(Dictionary<int, WorkoutSession> sessionsToCopy)
