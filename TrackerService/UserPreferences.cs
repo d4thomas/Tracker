@@ -144,11 +144,14 @@ public class UserPreferences
     {
         // Display user preferences
         Console.Clear();
-        Console.WriteLine("The following user preferences have been save:");
+        Console.WriteLine("\nThe following user preferences have been save:");
         Console.WriteLine("Days Available: " + string.Join(", ", daysAvailable));
         Console.WriteLine("Times Available: " + string.Join(", ", timesAvailable));
         Console.WriteLine("Workout Types: " + string.Join(", ", workoutTypes));
         Console.WriteLine("Workout Goal: " + workoutGoal);
+        Console.WriteLine("\nPress return to continue...");
+        Console.ReadLine();
+        Console.Clear();
     }
 
 }
