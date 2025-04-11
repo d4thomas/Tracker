@@ -6,7 +6,7 @@ namespace TrackerTests;
 public class ProgressTesting
 {
     [Fact]
-    public void TestProgress()
+    public void testProgress()
     {
         // Create sessions
         var workoutLog = new WorkoutLog();
