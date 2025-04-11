@@ -39,24 +39,25 @@ public class Program
             if (choice == "1")
             {
                 Console.Clear();
-                Console.WriteLine("Creating workout plan...");
-
                 // Get days available from the user
-                Console.WriteLine("\nPlease enter the day(s) you are available. Type done when complete.");
+                Console.WriteLine("\nPlease enter the day(s) you are available.");
+                Console.WriteLine("Press return after each entry. Type done when complete.");
                 Console.WriteLine("Options: " + string.Join(", ", userPreferences.validDayOptions));
                 Console.WriteLine("Press return to use all values.");
                 userPreferences.getDaysAvailable();
 
                 // Get time of day from the user
                 Console.Clear();
-                Console.WriteLine("\nPlease enter the time(s) of day you are available. Type done when complete.");
+                Console.WriteLine("\nPlease enter the time(s) of day you are available.");
+                Console.WriteLine("Press return after each entry. Type done when complete.");
                 Console.WriteLine("Options: " + string.Join(", ", userPreferences.validTimeOptions));
                 Console.WriteLine("Press return to use all values.");
                 userPreferences.getTimesAvailable();
 
                 // Get workout types from the user
                 Console.Clear();
-                Console.WriteLine("\nPlease enter workout types. Type done when complete.");
+                Console.WriteLine("\nPlease enter workout types");
+                Console.WriteLine("Press return after each entry. Type done when complete.");
                 Console.WriteLine("Options: " + string.Join(", ", userPreferences.validWorkoutTypes));
                 Console.WriteLine("Press return to use all values.");
                 userPreferences.getWorkoutTypes();
@@ -85,7 +86,6 @@ public class Program
             else if (choice == "2")
             {
                 Console.Clear();
-                Console.WriteLine("\nViewing workout schedule...");
                 workoutPlan.displayWorkoutPlan();
             }
 
@@ -94,7 +94,6 @@ public class Program
             {
                 // Display the workout log
                 Console.Clear();
-                Console.WriteLine("\nTracking workouts...");
                 if(workoutLog.workoutSessions.Count > 0)
                 {
                     workoutLog.displayAllSessions();
@@ -112,10 +111,12 @@ public class Program
                             Console.WriteLine("\nDo you want to update another session? (y/n)");
                         }
                     } while (answer?.ToLower() == "y");
+
+                    Console.Clear();
                     }
                 else
                 {
-                    Console.WriteLine("No workout log found!");
+                    Console.WriteLine("\nNo workout log found!");
                 }
             }
 
@@ -123,17 +124,16 @@ public class Program
             else if (choice == "4")
             {
                 Console.Clear();
-                Console.WriteLine("\nDeleting workout plan...");
                 if (File.Exists("workoutPlan.json"))
                 {
                     // Make sure to clear the current workout plan, then delete file
                     workoutPlan = new WorkoutPlan();
                     File.Delete("workoutPlan.json");
-                    Console.WriteLine("Workout plan deleted successfully.");
+                    Console.WriteLine("\nWorkout plan deleted successfully.");
                 }
                 else
                 {
-                    Console.WriteLine("No workout plan found to delete.");
+                    Console.WriteLine("\nNo workout plan found to delete.");
                 }
             }
 
@@ -141,17 +141,16 @@ public class Program
             else if (choice == "5")
             {
                 Console.Clear();
-                Console.WriteLine("\nDeleting workout log...");
                 if (File.Exists("workoutLog.json"))
                 {
                     // Make sure to clear the current workout log, then delete file
                     workoutLog = new WorkoutLog();
                     File.Delete("workoutLog.json");
-                    Console.WriteLine("Workout log deleted successfully.");
+                    Console.WriteLine("\nWorkout log deleted successfully.");
                 }
                 else
                 {
-                    Console.WriteLine("No workout log found to delete.");
+                    Console.WriteLine("\nNo workout log found to delete.");
                 }
             }
 
@@ -159,7 +158,6 @@ public class Program
             else if (choice == "6")
             {
                 Console.Clear();
-                Console.WriteLine("\nExiting...");
                 return;
             }
 

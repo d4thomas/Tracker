@@ -79,7 +79,7 @@ public void updateWorkoutSession()
         int completedBars = (int)((percentage / 100) * graphWidth);
         string progressGraph = new string('#', completedBars).PadRight(graphWidth, '-');
         Console.Clear();
-        Console.WriteLine($"Progress: [{progressGraph}]");
+        Console.WriteLine($"\nProgress: [{progressGraph}]");
 
         // Display progress summary
         Console.WriteLine($"{completed} out of {total} sessions completed.");
