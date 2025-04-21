@@ -2,7 +2,7 @@ using TrackerService;
 
 namespace TrackerServiceTests
 {
-    public class UserPreferencesTests
+    public class UserPreferencesTesting
     {
         private UserPreferences createUserPreferences(string input)
         {
