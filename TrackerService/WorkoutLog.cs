@@ -63,13 +63,18 @@ public void updateWorkoutSession()
         // Initialize variables to determine progress
         int total = workoutSessions.Count;
         int completed = 0;
+        int missed = 0;
 
-        // Deternine completed sessions
+        // Deternine completed/missed sessions
         foreach (var session in workoutSessions.Values)
         {
             if (!string.IsNullOrWhiteSpace(session.sessionStatus) && session.sessionStatus.Contains("Complete |"))
             {
                 completed++;
+            }
+            if (!string.IsNullOrWhiteSpace(session.sessionStatus) && session.sessionStatus.Contains("Missed"))
+            {
+                missed++;
             }
         }
 
@@ -83,37 +88,39 @@ public void updateWorkoutSession()
 
         // Display progress summary
         Console.WriteLine($"{completed} out of {total} sessions completed.");
+        Console.WriteLine($"{missed} out of {total} sessions missed.");
         Console.WriteLine($"Completion Percentage: {percentage:F0}%");
 
         // Display motivational message
         if (percentage == 0)
         {
-            Console.WriteLine("Don't worry, you can start fresh today!");
+            Console.WriteLine("\nDon't worry, you can start fresh today!");
         }
         else if (percentage > 0 && percentage < 25)
         {
-            Console.WriteLine("Keep at it!");
+            Console.WriteLine("\nKeep at it!");
         }
         else if (percentage >= 25 && percentage < 50)
         {
-            Console.WriteLine("You're almost halfway there!");
+            Console.WriteLine("\nYou're almost halfway there!");
         }
         else if (percentage >= 50 && percentage < 75)
         {
-            Console.WriteLine("You're more than halfway there!");
+            Console.WriteLine("\nYou're more than halfway there!");
         }
         else if (percentage >= 75 && percentage < 100)
         {
-            Console.WriteLine("You're almost done!");
+            Console.WriteLine("\nYou're almost done!");
         }
         else if (percentage == 100)
         {
-            Console.WriteLine("Congratulations! You've completed all your sessions!");
+            Console.WriteLine("\nCongratulations! You've completed all your sessions!");
         }
 
         // Wait for user to proceed
         Console.WriteLine("\nPress return to view all sessions...");
         Console.ReadLine();
+        Console.Clear();
 
         // Display all sessions in the workout log
         foreach (var session in workoutSessions.Values)
