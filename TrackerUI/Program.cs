@@ -56,7 +56,7 @@ public class Program
 
                 // Get workout types from the user
                 Console.Clear();
-                Console.WriteLine("\nPlease enter workout types");
+                Console.WriteLine("\nPlease enter workout types.");
                 Console.WriteLine("Press return after each entry. Type done when complete.");
                 Console.WriteLine("Options: " + string.Join(", ", userPreferences.validWorkoutTypes));
                 Console.WriteLine("Press return to use all values.");
@@ -86,7 +86,14 @@ public class Program
             else if (choice == "2")
             {
                 Console.Clear();
-                workoutPlan.displayWorkoutPlan();
+                if (workoutPlan.workoutSessions.Count > 0)
+                {
+                    workoutPlan.displayWorkoutPlan();
+                }
+                else
+                {
+                    Console.WriteLine("\nNo workout plan found!");
+                }
             }
 
             // Track workouts
