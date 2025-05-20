@@ -1,4 +1,4 @@
-# CS690 Final Project
+# Tracker
 Application to create workout plans and track adherence.
 
 ## Project Links
