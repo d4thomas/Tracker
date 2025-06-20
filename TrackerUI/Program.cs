@@ -120,7 +120,7 @@ public class Program
                     } while (answer?.ToLower() == "y");
 
                     Console.Clear();
-                    }
+                }
                 else
                 {
                     Console.WriteLine("\nNo workout log found!");
