@@ -9,9 +9,11 @@ public class WorkoutSession
     public string? sessionStatus { get; set; }
     public int sessionDuration { get; set; }
     public Workout? sessionWorkout { get; set; }
-    public WorkoutSession() { }
 
-    public WorkoutSession(int sessionID, string sessionDay, string sessionTime, List<string> workoutTypes, string? workoutGoal)
+    public WorkoutSession() {}
+
+    public WorkoutSession(int sessionID, string sessionDay, string sessionTime, List<string> workoutTypes,
+        string? workoutGoal)
     {
         // Initialize workout session with provided parameters
         this.sessionID = sessionID;
@@ -20,7 +22,8 @@ public class WorkoutSession
         sessionDuration = 15;
 
         // Filter workouts based on the provided workout types
-        var filteredWorkouts = Workout.Workouts.Values.Where(workout => workout.type != null && workoutTypes.Contains(workout.type)).ToList();
+        var filteredWorkouts = Workout.Workouts.Values
+            .Where(workout => workout.type != null && workoutTypes.Contains(workout.type)).ToList();
 
         // Match the workout types to include only items from the correct goal
         var random = new Random();
@@ -35,7 +38,7 @@ public class WorkoutSession
         }
         else if (workoutGoal == "Weightloss")
         {
-            var weightLossWorkouts = filteredWorkouts.Where(workout  => workout.type == "Cardio").ToList();
+            var weightLossWorkouts = filteredWorkouts.Where(workout => workout.type == "Cardio").ToList();
             sessionWorkout = weightLossWorkouts[random.Next(weightLossWorkouts.Count)];
         }
     }
@@ -48,7 +51,7 @@ public class WorkoutSession
             : "\nWorkout: None Assigned!";
 
         // Display workout session
-        Console.WriteLine($"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Duration: {sessionDuration} mins \n{workoutDetails}");
+        Console.WriteLine(
+            $"\nSession ID: {sessionID}, Day: {sessionDay}, Time: {sessionTime}, Duration: {sessionDuration} mins \n{workoutDetails}");
     }
-
 }

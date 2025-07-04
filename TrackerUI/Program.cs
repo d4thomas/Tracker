@@ -101,7 +101,7 @@ public class Program
             {
                 // Display the workout log
                 Console.Clear();
-                if(workoutLog.workoutSessions.Count > 0)
+                if (workoutLog.workoutSessions.Count > 0)
                 {
                     workoutLog.displayAllSessions();
 

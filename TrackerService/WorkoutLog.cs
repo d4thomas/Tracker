@@ -16,47 +16,49 @@ public class WorkoutLog
         workoutSessions[session.sessionID] = session;
     }
 
-public void updateWorkoutSession()
-{
-    // Get session ID
-    Console.WriteLine("Enter the Session ID:");
-    string? sessionIDString = Console.ReadLine();
-
-    // Update session ID status, if complete ask user for metric (duration) 
-    if (int.TryParse(sessionIDString, out int sessionID))
+    public void updateWorkoutSession()
     {
-        if (workoutSessions.ContainsKey(sessionID))
+        // Get session ID
+        Console.WriteLine("Enter the Session ID:");
+        string? sessionIDString = Console.ReadLine();
+
+        // Update session ID status, if complete ask user for metric (duration)
+        if (int.TryParse(sessionIDString, out int sessionID))
         {
-            var session = workoutSessions[sessionID];
-
-            Console.WriteLine("Was this session completed or missed? (Complete/Missed, return will register Complete):");
-            string? status = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(status))
+            if (workoutSessions.ContainsKey(sessionID))
             {
-                status = "Complete";
-            }
-            session.sessionStatus = status;
+                var session = workoutSessions[sessionID];
 
-            if(status == "Complete")
-            {
-                Console.WriteLine("Enter the duration of the workout:");
-                string? newWorkoutDuration = Console.ReadLine();
-                if (int.TryParse(newWorkoutDuration, out int workoutDuration))
+                Console.WriteLine(
+                    "Was this session completed or missed? (Complete/Missed, return will register Complete):");
+                string? status = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(status))
                 {
-                    session.sessionStatus += $" | Workout Duration: {workoutDuration}";
+                    status = "Complete";
                 }
-            }
 
-            // Export the workout log and display sessions
-            exportWorkoutLog();
-            displayAllSessions();
-        }
-        else
-        {
-            Console.WriteLine($"Session with ID {sessionID} not found.");
+                session.sessionStatus = status;
+
+                if (status == "Complete")
+                {
+                    Console.WriteLine("Enter the duration of the workout:");
+                    string? newWorkoutDuration = Console.ReadLine();
+                    if (int.TryParse(newWorkoutDuration, out int workoutDuration))
+                    {
+                        session.sessionStatus += $" | Workout Duration: {workoutDuration}";
+                    }
+                }
+
+                // Export the workout log and display sessions
+                exportWorkoutLog();
+                displayAllSessions();
+            }
+            else
+            {
+                Console.WriteLine($"Session with ID {sessionID} not found.");
+            }
         }
     }
-}
 
     public void displayAllSessions()
     {
@@ -72,6 +74,7 @@ public void updateWorkoutSession()
             {
                 completed++;
             }
+
             if (!string.IsNullOrWhiteSpace(session.sessionStatus) && session.sessionStatus.Contains("Missed"))
             {
                 missed++;
@@ -125,7 +128,8 @@ public void updateWorkoutSession()
         // Display all sessions in the workout log
         foreach (var session in workoutSessions.Values)
         {
-            Console.WriteLine($"Session ID: {session.sessionID}, Day: {session.sessionDay}, Time: {session.sessionTime}, Status: {session.sessionStatus}, Recommended Duration: {session.sessionDuration} mins");
+            Console.WriteLine(
+                $"Session ID: {session.sessionID}, Day: {session.sessionDay}, Time: {session.sessionTime}, Status: {session.sessionStatus}, Recommended Duration: {session.sessionDuration} mins");
 
             Console.WriteLine($"Workout: {session.sessionWorkout?.name ?? "Unknown"}");
             Console.WriteLine($"Type: {session.sessionWorkout?.type ?? "Unknown"}\n");
@@ -177,10 +181,11 @@ public void updateWorkoutSession()
             try
             {
                 string json = File.ReadAllText(filePath);
-                var sessions = JsonSerializer.Deserialize<Dictionary<int, WorkoutSession>>(json, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
+                var sessions = JsonSerializer.Deserialize<Dictionary<int, WorkoutSession>>(json,
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
 
                 if (sessions != null)
                 {
@@ -188,6 +193,7 @@ public void updateWorkoutSession()
                     {
                         workoutLog.addSession(kvp.Value);
                     }
+
                     workoutLog.isImported = true;
                     Console.WriteLine("Workout log loaded from file.");
                 }

@@ -46,5 +46,4 @@ public class WorkoutPlanTesting
         Assert.Equal("Fri", workoutPlan.workoutSessions[2].sessionDay);
         Assert.Equal("Morning", workoutPlan.workoutSessions[2].sessionTime);
     }
-
 }
