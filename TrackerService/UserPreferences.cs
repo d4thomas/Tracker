@@ -4,21 +4,32 @@ public class UserPreferences
 {
     // Initialize user preferences
     public List<string> daysAvailable = new List<string>();
-     public List<string> validDayOptions = new List<string> {
+
+    public List<string> validDayOptions = new List<string>
+    {
         "Mon", "Tue", "Weds", "Thur", "Fri", "Sat", "Sun"
-        };
+    };
+
     public List<string> timesAvailable = new List<string>();
-    public List<string> validTimeOptions = new List<string> {
+
+    public List<string> validTimeOptions = new List<string>
+    {
         "Morning", "Evening"
-        };
+    };
+
     public List<string> workoutTypes = new List<string>();
-    public List<string> validWorkoutTypes = new List<string> {
+
+    public List<string> validWorkoutTypes = new List<string>
+    {
         "Strength", "Cardio", "Flexibility", "Recovery"
-        };
+    };
+
     public string? workoutGoal;
-    public List<string> validWorkoutGoals = new List<string> {
+
+    public List<string> validWorkoutGoals = new List<string>
+    {
         "General", "Strength", "Weightloss"
-        };
+    };
 
     public void getDaysAvailable()
     {
@@ -35,10 +46,12 @@ public class UserPreferences
                 daysAvailable = new List<string>(validDayOptions);
                 break;
             }
+
             if (newDayAvailable == "done")
             {
                 break;
             }
+
             if (validDayOptions.Contains(newDayAvailable))
             {
                 daysAvailable.Add(newDayAvailable);
@@ -66,10 +79,12 @@ public class UserPreferences
                 timesAvailable = new List<string>(validTimeOptions);
                 break;
             }
+
             if (newTimeAvailable == "done")
             {
                 break;
             }
+
             if (validTimeOptions.Contains(newTimeAvailable))
             {
                 timesAvailable.Add(newTimeAvailable);
@@ -97,10 +112,12 @@ public class UserPreferences
                 workoutTypes = new List<string>(validWorkoutTypes);
                 break;
             }
+
             if (newWorkoutType == "done")
             {
                 break;
             }
+
             if (validWorkoutTypes.Contains(newWorkoutType))
             {
                 workoutTypes.Add(newWorkoutType);
@@ -127,7 +144,8 @@ public class UserPreferences
                 workoutGoal = "General";
                 break;
             }
-            if(validWorkoutGoals.Contains(newWorkoutGoal))
+
+            if (validWorkoutGoals.Contains(newWorkoutGoal))
             {
                 workoutGoal = newWorkoutGoal;
                 break;
@@ -153,6 +171,4 @@ public class UserPreferences
         Console.ReadLine();
         Console.Clear();
     }
-
 }
-

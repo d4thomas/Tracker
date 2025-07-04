@@ -7,9 +7,24 @@ namespace TrackerService.Tests
             // Create workouts
             Workout.Workouts = new Dictionary<string, Workout>
             {
-                { "0", new Workout { name = "Push-Ups", type = "Strength", howTo = "Start in a plank position, lower your body until your chest nearly touches the floor, then push back up." } },
-                { "1", new Workout { name = "Cycling", type = "Cardio", howTo = "Ride a bicycle at a steady pace for a set distance or time." } },
-                { "2", new Workout { name = "Bench Press", type = "Strength", howTo = "Lie on a bench, lower the barbell to your chest, then press it back up." } },
+                { "0", new Workout
+                {
+                    name = "Push-Ups",
+                    type = "Strength",
+                    howTo = "Start in a plank position, lower your body until your chest nearly touches the floor, then push back up."
+                } },
+                { "1", new Workout
+                {
+                    name = "Cycling",
+                    type = "Cardio",
+                    howTo = "Ride a bicycle at a steady pace for a set distance or time."
+                } },
+                { "2", new Workout
+                {
+                    name = "Bench Press",
+                    type = "Strength",
+                    howTo = "Lie on a bench, lower the barbell to your chest, then press it back up."
+                } },
             };
         }
 

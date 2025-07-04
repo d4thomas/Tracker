@@ -18,7 +18,8 @@ public class WorkoutPlan
             // Create an index to cycle through the times available
             var index = i % userPreferences.timesAvailable.Count;
             // Create a workout session
-            var session = new WorkoutSession(i, userPreferences.daysAvailable[i], userPreferences.timesAvailable[index], userPreferences.workoutTypes, userPreferences.workoutGoal);
+            var session = new WorkoutSession(i, userPreferences.daysAvailable[i], userPreferences.timesAvailable[index],
+                userPreferences.workoutTypes, userPreferences.workoutGoal);
             // Add the session to the workout plan
             workoutSessions[i] = session;
         }
@@ -53,10 +54,11 @@ public class WorkoutPlan
             try
             {
                 string json = File.ReadAllText(filePath);
-                var sessions = JsonSerializer.Deserialize<Dictionary<int, WorkoutSession>>(json, new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
+                var sessions = JsonSerializer.Deserialize<Dictionary<int, WorkoutSession>>(json,
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
 
                 if (sessions == null)
                 {
@@ -65,9 +67,11 @@ public class WorkoutPlan
                 }
 
                 Console.WriteLine("Workout plan loaded from file.");
-                return new WorkoutPlan { 
+                return new WorkoutPlan
+                {
                     workoutSessions = sessions,
-                    isImported = true };
+                    isImported = true
+                };
             }
             catch (Exception exception)
             {
@@ -81,5 +85,3 @@ public class WorkoutPlan
         }
     }
 }
-
-
